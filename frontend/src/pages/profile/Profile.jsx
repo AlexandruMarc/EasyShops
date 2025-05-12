@@ -112,30 +112,40 @@ function Profile() {
   if (loading) return <Loader />;
 
   return (
-    <div className="container mx-auto mt-5 ">
-      <h1 className="text-2xl font-bold mb-4 text-center">Profile</h1>
+    <div className="container p-4 mt-5">
+      <h1 className="text-2xl w-[2000px] font-bold ml-44 pl-4 mr-40 pr-4 mb-4 text-center">
+        Profile
+      </h1>
       {error && <p className="text-red-500 text-center">{error}</p>}
-      <div className="flex">
-        <div className="w-2/3 ">
+      <div className="flex w-[2000px] ml-44 pl-4 mr-40 pr-4">
+        {/* Left Section: Orders */}
+        <div className="w-1/3 pr-4">
+          <OrderList orders={userDetails.orders} />
+        </div>
+
+        {/* Middle Section: Profile Details */}
+        <div className="w-1/3 px-4">
           <ProfileDetails
             userDetails={userDetails}
             setIsEditing={setIsEditing}
             onProfileImageUpdate={handleProfileImageUpdate}
           />
-          <OrderList orders={userDetails.orders} />
         </div>
-        <div className="w-1/3">
+
+        {/* Right Section: Addresses and Delete Account */}
+        <div className="w-1/3 pl-4">
           <AddressList userId={userId} />
-          <div className="mt-4 flex justify-start w-[700px] ">
+          <div className="mt-4 flex justify-start">
             <button
               onClick={handleDeleteAccount}
-              className="shadow-lg border-2 border-b-4 border-red-900 bg-red-400 hover:bg-red-800 text-white font-bold ml-6 mt-20 w-[460px] py-2 px-4 rounded cursor-pointer"
+              className="shadow-lg border-2 border-b-4 border-red-900 bg-red-400 hover:bg-red-800 text-white font-bold w-full py-2 px-4 rounded cursor-pointer"
             >
               Delete Account
             </button>
           </div>
         </div>
       </div>
+
       {isEditing && (
         <EditProfileModal
           userDetails={userDetails}

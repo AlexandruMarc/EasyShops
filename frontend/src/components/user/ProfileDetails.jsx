@@ -43,6 +43,7 @@ export default function ProfileDetails({
         );
       }
       onProfileImageUpdate(response.data.data);
+      window.location.reload();
     } catch (error) {
       createNotification({
         message: 'Error uploading/updating profile image',

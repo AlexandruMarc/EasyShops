@@ -40,49 +40,61 @@ export default function CheckoutNavbar() {
         <div className="flex items-center space-x-4">
           {steps.map((step, index) => {
             const completed = isStepCompleted(step.path);
+            const isClickable = index <= currentPathIndex;
 
             return (
               <div key={index} className="flex items-center">
-                <Link
-                  to={step.path}
-                  className="flex flex-col items-center text-center"
-                >
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold 
-                    ${
-                      completed
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-500'
-                    }
-                  `}
+                {isClickable ? (
+                  <Link
+                    to={step.path}
+                    className="flex flex-col items-center text-center"
                   >
-                    {/* If the step is completed and not the last, show a checkmark instead of index */}
-                    {completed && index < currentPathIndex ? (
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={3}
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    ) : (
-                      index + 1
-                    )}
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold 
+                      ${
+                        completed
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-gray-200 text-gray-500'
+                      }
+                    `}
+                    >
+                      {/* If the step is completed and not the last, show a checkmark instead of index */}
+                      {completed && index < currentPathIndex ? (
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={3}
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      ) : (
+                        index + 1
+                      )}
+                    </div>
+                    <span
+                      className={`mt-1 text-sm font-medium ${
+                        completed ? 'text-blue-600' : 'text-gray-500'
+                      }`}
+                    >
+                      {step.name}
+                    </span>
+                  </Link>
+                ) : (
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center font-semibold bg-gray-200 text-gray-500">
+                      {index + 1}
+                    </div>
+                    <span className="mt-1 text-sm font-medium text-gray-500">
+                      {step.name}
+                    </span>
                   </div>
-                  <span
-                    className={`mt-1 text-sm font-medium ${
-                      completed ? 'text-blue-600' : 'text-gray-500'
-                    }`}
-                  >
-                    {step.name}
-                  </span>
-                </Link>
+                )}
 
                 {/* Connecting Line (except after the last step) */}
                 {index < steps.length - 1 && (

@@ -4,7 +4,7 @@ export default function OrderList({ orders }) {
   const [selectedOrder, setSelectedOrder] = useState(null);
   return (
     <>
-      <div className="bg-white border-l-black p-6 mt-7 rounded shadow-2xl border-2 border-b-4 border-gray-200 w-full max-w-[45rem] mx-auto">
+      <div className="bg-white border-l-black p-6 rounded shadow-2xl border-2 border-b-4 border-gray-200 w-full max-w-[45rem] mx-auto">
         <h2 className="text-2xl font-bold mb-6">My Orders</h2>
         <ul className="space-y-4">
           {orders.length ? (
@@ -48,7 +48,7 @@ export default function OrderList({ orders }) {
       {/* Modal for items */}
       {selectedOrder && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50">
-          <div className="bg-white rounded p-6 max-w-md w-full">
+          <div className="bg-white rounded p-6 max-w-[800px] w-full">
             <h3 className="text-xl font-bold mb-4">
               Items for Order {selectedOrder.id}
             </h3>
