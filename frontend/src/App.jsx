@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Loader from './components/utils/Loader.jsx';
 import { ShoppingCartContext } from './context/ShoppingCartContext.jsx';
+import Admin from './pages/admin/admin-panel.jsx';
 import CategoryList from './pages/admin/category/list.jsx';
 import OrdersList from './pages/admin/order/list.jsx';
 import UpdateOrder from './pages/admin/order/update.jsx';
@@ -22,9 +23,8 @@ import PlacedOrder from './pages/order/PlacedOrder.jsx';
 import Summary from './pages/order/Summary.jsx';
 import ProductDetails from './pages/product/ProductDetails.jsx';
 import ProductList from './pages/product/ProductList.jsx';
-import Admin from './pages/profile/Admin.jsx';
-import Profile from './pages/profile/Profile.jsx';
 import Login from './pages/user/login.jsx';
+import Profile from './pages/user/profile.jsx';
 import Register from './pages/user/register.jsx';
 import apiClient from './services/apiClient.js';
 
