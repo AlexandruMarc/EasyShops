@@ -1,34 +1,44 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Pagination from '../../components/Pagination';
 import SearchFilters from '../../components/SearchFilters';
 import ProductCard from '../../components/products/ProductCard';
 import Loader from '../../components/utils/Loader';
 import { ShoppingCartContext } from '../../context/Contex';
+import apiClient from '../../services/apiClient';
+import { useCreateNotification } from '../../utils/toast';
 
 export default function ProductList() {
-  const {
-    listOfProducts,
-    loading,
-    searchResults,
-    selectedProduct,
-    userId,
-    selectedCategory,
-    setSelectedCategory,
-    selectedBrand,
-    setSelectedBrand,
-  } = useContext(ShoppingCartContext);
+  const { searchResults } = useContext(ShoppingCartContext);
+  const [loading, setLoading] = useState(true);
+  const [listOfProducts, setListOfProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const createNotification = useCreateNotification();
   const productsPerPage = 15;
 
   let productsToDisplay;
-  if (selectedProduct) {
-    productsToDisplay = selectedProduct.products;
-  } else if (searchResults) {
+  if (searchResults) {
     productsToDisplay = searchResults;
   } else {
     productsToDisplay = listOfProducts;
   }
+
+  async function getAllProducts() {
+    try {
+      const { data } = await apiClient.get('/products/all');
+      setListOfProducts(data.data || []);
+    } catch (error) {
+      createNotification({ message: error, type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   if (loading) return <Loader />;
 
@@ -48,7 +58,12 @@ export default function ProductList() {
   return (
     <section className="py-12 bg-gray-50 sm:py-20 lg:py-24 mt-6">
       <div className="px-4 mx-auto sm:px-8 lg:px-12 max-w-[2030px] flex gap-8">
-        <SearchFilters />
+        <SearchFilters
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          selectedBrand={selectedBrand}
+          setSelectedBrand={setSelectedBrand}
+        />
         <div className="flex-1">
           <div className="max-w-lg mx-auto text-center">
             <h2 className="text-4xl font-bold text-gray-800 sm:text-5xl">

@@ -12,8 +12,8 @@ const URL = 'http://localhost:8080';
 
 function ProductDetails() {
   const { id } = useParams();
-  const { productsDetails, setProductsDetails, cartId } =
-    useContext(ShoppingCartContext);
+  const { cartId } = useContext(ShoppingCartContext);
+  const [productsDetails, setProductsDetails] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [outOfStock, setOutOfStock] = useState(false);

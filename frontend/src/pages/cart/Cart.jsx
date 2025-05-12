@@ -9,8 +9,7 @@ import CartTile from './CartTile';
 export default function Cart() {
   const [cart, setCart] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
-  const { setLoading, cartId, setCartItems, cartItems } =
-    useContext(ShoppingCartContext);
+  const { cartId, setCartItems, cartItems } = useContext(ShoppingCartContext);
   const navigate = useNavigate();
   const createNotification = useCreateNotification();
   const totalItems = cartItems.reduce(
@@ -20,15 +19,12 @@ export default function Cart() {
 
   async function getCart() {
     try {
-      setLoading(true);
       const { data } = await apiClient.get(`/cart/${cartId}/my-cart`);
       setCart(data.data);
       setCartItems(data.data.items);
       updateTotalPrice(data.data.items);
     } catch (error) {
       createNotification({ message: error, type: 'error' });
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -38,7 +34,7 @@ export default function Cart() {
     } else {
       getCart();
     }
-  }, [cart, cartId, setLoading]);
+  }, [cart, cartId]);
 
   async function handleClearCart() {
     try {

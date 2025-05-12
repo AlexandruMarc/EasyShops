@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import BillingData from '../../components/address/BillingData';
-import { ShoppingCartContext } from '../../context/Contex';
 import apiClient from '../../services/apiClient';
 import { useCreateNotification } from '../../utils/toast';
 
@@ -14,7 +13,6 @@ export default function OrderDetails() {
   const [selectedAddress, setSelectedAddress] = useState('');
   const [deliveryMethod, setDeliveryMethod] = useState('courier');
   const [paymentMethod, setPaymentMethod] = useState('');
-  const { setLoading } = useContext(ShoppingCartContext);
   const navigate = useNavigate();
   const createNotification = useCreateNotification();
   const userId = useSelector((state) => state.auth.user.userId);
@@ -36,14 +34,12 @@ export default function OrderDetails() {
       );
     } catch (error) {
       createNotification({ message: error, type: 'error' });
-    } finally {
-      setLoading(false);
     }
   }
 
   useEffect(() => {
     getUserDetails();
-  }, [setLoading]);
+  }, []);
 
   async function handlePlaceOrder() {
     navigate('/cart/summary', {

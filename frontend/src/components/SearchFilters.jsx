@@ -4,19 +4,16 @@ import { ShoppingCartContext } from '../context/Contex';
 import apiClient from '../services/apiClient';
 import { useCreateNotification } from '../utils/toast';
 
-export default function SearchFilters() {
+export default function SearchFilters({
+  selectedCategory,
+  setSelectedCategory,
+  selectedBrand,
+  setSelectedBrand,
+}) {
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
-  const {
-    setSearchResults,
-    setSelectedProduct,
-    sortOption,
-    setSortOption,
-    selectedCategory,
-    setSelectedCategory,
-    selectedBrand,
-    setSelectedBrand,
-  } = useContext(ShoppingCartContext);
+  const { setSearchResults } = useContext(ShoppingCartContext);
+  const [sortOption, setSortOption] = useState('');
   const createNotification = useCreateNotification();
 
   useEffect(() => {
@@ -46,7 +43,6 @@ export default function SearchFilters() {
     try {
       const { data } = await apiClient.get('/products/all');
       setSearchResults(data.data);
-      setSelectedProduct(0);
     } catch (error) {
       createNotification({ message: error, type: 'error' });
     }
@@ -58,7 +54,6 @@ export default function SearchFilters() {
         params: { category },
       });
       setSearchResults(data.data);
-      setSelectedProduct(0);
     } catch (error) {
       createNotification({ message: error, type: 'error' });
     }
@@ -70,7 +65,6 @@ export default function SearchFilters() {
         params: { brand },
       });
       setSearchResults(data.data);
-      setSelectedProduct(0);
     } catch (error) {
       createNotification({ message: error, type: 'error' });
     }
@@ -92,7 +86,6 @@ export default function SearchFilters() {
         return;
       }
       setSearchResults(data.data);
-      setSelectedProduct(0);
     } catch (error) {
       createNotification({
         message: error.response.data.message,
@@ -105,7 +98,6 @@ export default function SearchFilters() {
     try {
       const { data } = await apiClient.get('/products/sort/asc');
       setSearchResults(data.data);
-      setSelectedProduct(0);
     } catch (error) {
       createNotification({ message: error, type: 'error' });
     }
@@ -115,7 +107,6 @@ export default function SearchFilters() {
     try {
       const { data } = await apiClient.get('/products/sort/desc');
       setSearchResults(data.data);
-      setSelectedProduct(0);
     } catch (error) {
       createNotification({ message: error, type: 'error' });
     }

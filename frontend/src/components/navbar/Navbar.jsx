@@ -19,16 +19,8 @@ import { useCreateNotification } from '../../utils/toast';
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
-  const {
-    setSearchResults,
-    setSelectedProduct,
-    cartItems,
-    setCartItems,
-    setSortOption,
-    setCartId,
-    setSelectedCategory,
-    setSelectedBrand,
-  } = useContext(ShoppingCartContext);
+  const { setSearchResults, cartItems, setCartItems, setCartId } =
+    useContext(ShoppingCartContext);
   const navigate = useNavigate();
   const createNotification = useCreateNotification();
   const dispatch = useDispatch();
@@ -52,7 +44,6 @@ export default function Navbar() {
     try {
       const { data } = await apiClient.get(`/products/products/${query}/name`);
       setSearchResults(data.data);
-      setSelectedProduct(0);
       navigate('/');
     } catch (error) {
       createNotification({ message: error, type: 'error' });
@@ -67,7 +58,6 @@ export default function Navbar() {
     try {
       const { data } = await apiClient.get('/products/all');
       setSearchResults(data.data);
-      setSelectedProduct(0);
     } catch (error) {
       createNotification({ message: error, type: 'error' });
     }
@@ -79,6 +69,7 @@ export default function Navbar() {
       setUserDetails({});
       setCartItems([]);
       setCartId(null);
+      setDropdownOpen(false);
       dispatch(logout());
       navigate('/login');
     } catch (error) {
@@ -111,11 +102,7 @@ export default function Navbar() {
           <Link
             to="/"
             onClick={() => {
-              setSelectedProduct(0);
               setSearchResults(0);
-              setSortOption('');
-              setSelectedCategory('');
-              setSelectedBrand('');
             }}
             className="text-black font-serif text-2xl hover:text-indigo-800 transition-colors animate-hippo-bounce"
           >
