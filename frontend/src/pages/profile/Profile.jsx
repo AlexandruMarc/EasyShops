@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { logout } from '../../auth/auth';
 import AddressList from '../../components/user/AddressList';
 import EditProfileModal from '../../components/user/EditProfileModal';
 import OrderList from '../../components/user/OrderList';
 import ProfileDetails from '../../components/user/ProfileDetails';
 import Loader from '../../components/utils/Loader';
-import { logout } from '../../features/auth';
 import apiClient from '../../services/apiClient';
 import { useCreateNotification } from '../../utils/toast';
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { ShoppingCartContext } from '../context/Contex';
+import { ShoppingCartContext } from '../context/ShoppingCartContext';
 import apiClient from '../services/apiClient';
 import { useCreateNotification } from '../utils/toast';
 

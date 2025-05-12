@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { ShoppingCartContext } from '../../context/Contex';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext.jsx';
 
 export default function CheckoutNavbar() {
   const { cartItems } = useContext(ShoppingCartContext);

@@ -4,7 +4,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ShoppingCartContext } from '../../context/Contex';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext.jsx';
 import apiClient from '../../services/apiClient';
 import { useCreateNotification } from '../../utils/toast';
 

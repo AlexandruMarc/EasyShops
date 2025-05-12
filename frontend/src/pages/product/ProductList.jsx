@@ -4,7 +4,7 @@ import Pagination from '../../components/Pagination';
 import SearchFilters from '../../components/SearchFilters';
 import ProductCard from '../../components/products/ProductCard';
 import Loader from '../../components/utils/Loader';
-import { ShoppingCartContext } from '../../context/Contex';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext.jsx';
 import apiClient from '../../services/apiClient';
 import { useCreateNotification } from '../../utils/toast';
 

@@ -5,7 +5,7 @@ import Pagination from '../../../components/Pagination';
 import DeleteConfirmationModal from '../../../components/products/DeleteConfirmationModal';
 import ProductTable from '../../../components/products/ProductTable';
 import Loader from '../../../components/utils/Loader';
-import { ShoppingCartContext } from '../../../context/Contex';
+import { ShoppingCartContext } from '../../../context/ShoppingCartContext.jsx';
 import apiClient from '../../../services/apiClient';
 import { useCreateNotification } from '../../../utils/toast';
 

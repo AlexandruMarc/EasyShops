@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './App.jsx';
-import ShoppingCartProvider from './context/Contex.jsx';
+import ShoppingCartProvider from './context/ShoppingCartContext.jsx';
 import './index.css';
 import store from './store';
 

@@ -4,11 +4,11 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { login, logout } from './auth/auth.js';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Loader from './components/utils/Loader.jsx';
-import { ShoppingCartContext } from './context/Contex';
-import { login, logout } from './features/auth';
+import { ShoppingCartContext } from './context/ShoppingCartContext.jsx';
 import CategoryList from './pages/admin/category/list.jsx';
 import OrdersList from './pages/admin/order/list.jsx';
 import UpdateOrder from './pages/admin/order/update.jsx';
