@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import CartTile from '../../components/cart/CartTile.jsx';
 import { ShoppingCartContext } from '../../context/ShoppingCartContext.jsx';
-import apiClient from '../../services/apiClient';
-import { useCreateNotification } from '../../utils/toast';
-import CartTile from './CartTile';
+import apiClient from '../../services/apiClient.js';
+import { useCreateNotification } from '../../utils/toast.js';
 
 export default function Cart() {
   const [cart, setCart] = useState(null);
