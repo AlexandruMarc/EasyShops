@@ -47,7 +47,7 @@ function ProductDetails() {
   async function getCartItem(cartId, productId) {
     try {
       const { data } = await apiClient.get(
-        `/cart-items/${cartId}/item/${productId}`,
+        `/cart/items/${cartId}/item/${productId}`,
       );
       if (data.message === 'Not Found !') {
         return;
@@ -82,7 +82,7 @@ function ProductDetails() {
       return;
     }
     try {
-      await apiClient.post('/cart-items/item/add', null, {
+      await apiClient.post('/cart/items/item/add', null, {
         params: { cartId, productId: id, quantity },
       });
       navigate('/cart/my');

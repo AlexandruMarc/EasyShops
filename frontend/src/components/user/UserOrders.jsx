@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function OrderList({ orders }) {
+export default function UserOrders({ orders }) {
   const [selectedOrder, setSelectedOrder] = useState(null);
   return (
     <>

@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
   async function getCartItem(cartId, productId) {
     try {
       const { data } = await apiClient.get(
-        `/cart-items/${cartId}/item/${productId}`,
+        `/cart/items/${cartId}/item/${productId}`,
       );
       if (data.message === 'Not Found !') {
         return;
@@ -51,7 +51,7 @@ export default function ProductCard({ product }) {
       return;
     }
     try {
-      const { data } = await apiClient.post('/cart-items/item/add', null, {
+      const { data } = await apiClient.post('/cart/items/item/add', null, {
         params: { cartId, productId: product.id, quantity: 1 },
       });
       setCartItems(data.data.items);

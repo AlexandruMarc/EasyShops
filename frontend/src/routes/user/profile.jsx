@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../auth/auth';
 import AddressList from '../../components/user/AddressList';
 import EditProfileModal from '../../components/user/EditProfileModal';
-import OrderList from '../../components/user/OrderList';
 import ProfileDetails from '../../components/user/ProfileDetails';
+import UserOrders from '../../components/user/UserOrders';
 import Loader from '../../components/utils/Loader';
 import apiClient from '../../services/apiClient';
 import { useCreateNotification } from '../../utils/toast';
@@ -120,7 +120,7 @@ function Profile() {
       <div className="flex w-[2000px] ml-44 pl-4 mr-40 pr-4">
         {/* Left Section: Orders */}
         <div className="w-1/3 pr-4">
-          <OrderList orders={userDetails.orders} />
+          <UserOrders orders={userDetails.orders} />
         </div>
 
         {/* Middle Section: Profile Details */}

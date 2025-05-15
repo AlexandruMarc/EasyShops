@@ -49,7 +49,7 @@ export default function Cart() {
 
   async function handleRemoveItem(productId) {
     try {
-      await apiClient.delete(`/cart-items/${cartId}/item/${productId}/remove`);
+      await apiClient.delete(`/cart/items/${cartId}/item/${productId}/remove`);
 
       const updatedItems = cart.items.filter(
         (item) => item.product.id !== productId,
@@ -67,7 +67,7 @@ export default function Cart() {
 
   async function handleUpdateQuantity(productId, quantity) {
     await apiClient.put(
-      `/cart-items/${cartId}/item/${productId}/update`,
+      `/cart/items/${cartId}/item/${productId}/update`,
       null,
       {
         params: { quantity },

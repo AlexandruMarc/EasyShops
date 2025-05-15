@@ -96,7 +96,7 @@ export default function ProductsList() {
     try {
       for (const user of usersFromResponse) {
         await apiClient.delete(
-          `/cart-items/${user.cart.cartId}/item/${productToDelete}/remove`,
+          `/cart/items/${user.cart.cartId}/item/${productToDelete}/remove`,
         );
       }
       await apiClient.delete(`/products/product/${productToDelete}/delete`);
